@@ -1,0 +1,28 @@
+
+const express = require("express");
+require("dotenv").config();
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.get("/", (req, res) => {
+  res.send(`
+    <h1>COSZI BATANG HENERAL V1.0</h1>
+    <p>Respiratory system is running.</p>
+  `);
+});
+
+app.get("/health", (req, res) => {
+  res.json({
+    status: "online",
+    project: "COSZI BATANG HENERAL",
+    version: "1.0.0"
+  });
+});
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`COSZI server running on port ${PORT}`);
+});
